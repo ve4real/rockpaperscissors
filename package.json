@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "truffle-default-builder": "^2.0.0"
+    "truffle-default-builder": "^2.0.0",
+    "web3-utils": "^1.0.0-beta.27"
   }
 }

@@ -13,6 +13,9 @@ contract RockPaperScissors is Runnable{
 	//challenge idChallenge ended with the outcome. if outcome=0 is a draw, if outcome=1 player1 wins else player2 wins
 	event LogEndChallenge(uint idChallenge, uint8 outcome, address player1, address player2);
 
+	//player enrol to the challenge idChallenge (and therefore sent the amount)
+	event LogChoiceProvided(uint idChallenge, address player, bytes9 choice);
+
 	//the user player has withdrawn amount in weis
 	event LogWithdraw(address player, uint amount);
 
@@ -30,11 +33,13 @@ contract RockPaperScissors is Runnable{
 	bytes9 public constant ROCK = "rock";
 	bytes9 public constant PAPER = "paper";
 	bytes9 public constant SCISSORS = "scissors";
-	uint constant public MIN_AMOUNT_TO_PLAY = 100; //wei
+	uint constant public MIN_AMOUNT_TO_PLAY = 1000; //wei - TODO could be set in the constructor
 	
 	mapping(address => uint) private balances; //to manage the withdraws in draw case
-	mapping(uint => Challenge) private challenges; //book of challenges
+	mapping(uint => Challenge) public challenges; //book of challenges
 	uint private nextId = 0; //incremental id to identify each challenge
+
+	function RockPaperScissors(bool initialStatus) Runnable(initialStatus){ }
 
 
    	function computeKeccak256(bytes9 choice, uint secret)
@@ -101,13 +106,14 @@ contract RockPaperScissors is Runnable{
 
 	function createChallenge(address opponent, bytes32 choiceHash)//choiceHash will be the keccak256 of choice + secret
 	payable
+	onlyIfRunning
 	public
 	returns(uint id)
 	{
 		require(opponent != 0x0);
 		require(choiceHash != 0x0);
 		require(msg.sender != opponent);
-		require(msg.value > MIN_AMOUNT_TO_PLAY);
+		require(msg.value >= MIN_AMOUNT_TO_PLAY);
 
 		uint idChallenge = nextId;
 
@@ -129,6 +135,7 @@ contract RockPaperScissors is Runnable{
 
 	function enrol(uint idChallenge, bytes32 choiceHash)
 	payable
+	onlyIfRunning
 	public
 	returns(bool success)
 	{
@@ -149,6 +156,7 @@ contract RockPaperScissors is Runnable{
 	//good to know: if size of choiceProvided is greater than 9, the rest will be dropped and the choice will
 	//lead to defeat
 	function play(uint idChallenge, bytes9 choiceProvided, uint secretProvided)
+	onlyIfRunning
 	public
 	returns(bool success)
 	{
@@ -191,6 +199,8 @@ contract RockPaperScissors is Runnable{
 			}
 
 			LogEndChallenge(idChallenge, outcome, c.owner, c.opponent);
+		}else{
+			LogChoiceProvided(idChallenge, msg.sender, choiceProvided);
 		}
 
 		return true;
@@ -198,6 +208,7 @@ contract RockPaperScissors is Runnable{
 
 
 	function withdraw()
+	onlyIfRunning
 	public
 	returns(bool success)
 	{
@@ -206,6 +217,7 @@ contract RockPaperScissors is Runnable{
 
 		balances[msg.sender] = 0;
 		msg.sender.transfer(amount);
+		LogWithdraw(msg.sender, amount);
 		return true;
 	}
 }
