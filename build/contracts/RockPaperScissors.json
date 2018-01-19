@@ -1,0 +1,335 @@
+{
+  "contract_name": "RockPaperScissors",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "stop",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "withdraw",
+      "outputs": [
+        {
+          "name": "success",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "choice",
+          "type": "bytes9"
+        },
+        {
+          "name": "secret",
+          "type": "uint256"
+        }
+      ],
+      "name": "computeKeccak256",
+      "outputs": [
+        {
+          "name": "hash",
+          "type": "bytes32"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "idChallenge",
+          "type": "uint256"
+        },
+        {
+          "name": "choiceHash",
+          "type": "bytes32"
+        }
+      ],
+      "name": "enrol",
+      "outputs": [
+        {
+          "name": "success",
+          "type": "bool"
+        }
+      ],
+      "payable": true,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "idChallenge",
+          "type": "uint256"
+        },
+        {
+          "name": "choiceProvided",
+          "type": "bytes9"
+        },
+        {
+          "name": "secretProvided",
+          "type": "uint256"
+        }
+      ],
+      "name": "play",
+      "outputs": [
+        {
+          "name": "success",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getOwner",
+      "outputs": [
+        {
+          "name": "owner",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "MIN_AMOUNT_TO_PLAY",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "changeOwner",
+      "outputs": [
+        {
+          "name": "success",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "SCISSORS",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bytes9"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "ROCK",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bytes9"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "run",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "PAPER",
+      "outputs": [
+        {
+          "name": "",
+          "type": "bytes9"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "opponent",
+          "type": "address"
+        },
+        {
+          "name": "choiceHash",
+          "type": "bytes32"
+        }
+      ],
+      "name": "createChallenge",
+      "outputs": [
+        {
+          "name": "id",
+          "type": "uint256"
+        }
+      ],
+      "payable": true,
+      "type": "function"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "player1",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "player2",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "amountToPlay",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "name": "idChallenge",
+          "type": "uint256"
+        }
+      ],
+      "name": "LogNewChallenge",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "player",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "idChallenge",
+          "type": "uint256"
+        }
+      ],
+      "name": "LogNewEnrol",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "idChallenge",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "name": "outcome",
+          "type": "uint8"
+        },
+        {
+          "indexed": false,
+          "name": "player1",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "player2",
+          "type": "address"
+        }
+      ],
+      "name": "LogEndChallenge",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "player",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "LogWithdraw",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "isRunning",
+          "type": "bool"
+        }
+      ],
+      "name": "LogChangeState",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "ondOwner",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "LogNewOwner",
+      "type": "event"
+    }
+  ],
+  "unlinked_binary": "0x",
+  "networks": {},
+  "schema_version": "0.0.5",
+  "updated_at": 1516378321151
+}

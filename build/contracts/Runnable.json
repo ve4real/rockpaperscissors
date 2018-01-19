@@ -1,0 +1,100 @@
+{
+  "contract_name": "Runnable",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "stop",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "getOwner",
+      "outputs": [
+        {
+          "name": "owner",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "changeOwner",
+      "outputs": [
+        {
+          "name": "success",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "run",
+      "outputs": [],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "name": "initialState",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "isRunning",
+          "type": "bool"
+        }
+      ],
+      "name": "LogChangeState",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "ondOwner",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "LogNewOwner",
+      "type": "event"
+    }
+  ],
+  "unlinked_binary": "0x60606040526000805460a060020a60ff02191674010000000000000000000000000000000000000000179055341561003657600080fd5b60405160208061037a833981016040528080519150505b5b60008054600160a060020a03191633600160a060020a03161790555b6000805460a060020a60ff02191674010000000000000000000000000000000000000000831515021790555b505b6102d3806100a76000396000f300606060405263ffffffff60e060020a60003504166307da68f58114610045578063893d20e81461005a578063a6f9dae114610089578063c0406226146100bc575b600080fd5b341561005057600080fd5b6100586100d1565b005b341561006557600080fd5b61006d61013b565b604051600160a060020a03909116815260200160405180910390f35b341561009457600080fd5b6100a8600160a060020a036004351661014b565b604051901515815260200160405180910390f35b34156100c757600080fd5b610058610217565b005b60005433600160a060020a039081169116146100ec57600080fd5b60005460a060020a900460ff16151561010457600080fd5b6000805460a060020a60ff021916815560008051602061028883398151915290604051901515815260200160405180910390a15b5b565b600054600160a060020a03165b90565b60008054819033600160a060020a0390811691161461016957600080fd5b600160a060020a038316151561017e57600080fd5b50600054600160a060020a0390811690831681141561019c57600080fd5b7f95a4124b32fadd40e6e63088992a62e3505e61d1683b783d03e575d7c1dfb967338285604051600160a060020a03938416815291831660208301529091166040808301919091526060909101905180910390a160008054600160a060020a031916600160a060020a038516179055600191505b5b50919050565b60005433600160a060020a0390811691161461023257600080fd5b60005460a060020a900460ff161561024957600080fd5b6000805460a060020a60ff02191660a060020a1790556000805160206102888339815191526001604051901515815260200160405180910390a15b5b56009e1997669d6e3fefe2c9e8598067338ddd5cd138c10b7b721dca4d44634a4127a165627a7a72305820969a5d28d678ec4c08791eae4ea445d6cd10705c3bf13d19a9e3013cea1b7a5d0029",
+  "networks": {},
+  "schema_version": "0.0.5",
+  "updated_at": 1516378321151
+}
